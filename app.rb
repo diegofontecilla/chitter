@@ -10,13 +10,15 @@ class Chitter < Sinatra::Base
   end
 
   post '/new_comment' do
-    session[:comment] = params[:comment]
-    redirect '/new_comment'
+    comment = params[:comment]
+    Peeps.add_peep(comment)
+    redirect '/'
   end
 
-  get '/new_comment' do
-    erb :new_comment
-  end
+  # get '/new_comment' do
+  #   @peeps = Peeps.all
+  #   erb :new_comment
+  # end
 
   run! if app_file == $0
 end
