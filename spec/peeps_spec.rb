@@ -5,20 +5,17 @@ describe Peeps do
   context '.all' do
 
     it 'display all the peeps' do
+      connection = PG.connect(dbname: 'chitter_2_test')
+
+      connection.exec("INSERT INTO peeps (peep) VALUES('having breakfast on venice');")
+      connection.exec("INSERT INTO peeps (peep) VALUES('I dont see facebook much');")
+      connection.exec("INSERT INTO peeps (peep) VALUES('I love nature');")
+
       peeps = Peeps.all
-      expect(peeps).to match_array(['having breakfast on venice', 'I dont like facebook'])
+
+      expect(peeps).to include('having breakfast on venice')
+      expect(peeps).to include('I dont see facebook much')
+      expect(peeps).to include('I love nature')
     end
-
-    # it 'display all the peeps' do
-    #   peeps = Peeps.all
-
-    #   # connection = PG.connect(dbname: 'chitter_2_test')
-    #   #
-    #   # connection.exec("INSERT INTO peeps (peep) VALUES ('having breakfast on venice');")
-    #   #
-    #   # peeps = Peeps.all
-    #   #
-    #   # expect(peeps).to include('having breakfast on venice')
-    # end
   end
 end
