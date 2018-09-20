@@ -1,8 +1,10 @@
 require 'sinatra/base'
+require 'peeps'
 
 class Chitter < Sinatra::Base
-  
+
   get '/' do
+    @peeps = Peeps.all
     erb :index
   end
 
