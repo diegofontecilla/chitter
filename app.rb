@@ -10,8 +10,7 @@ class Chitter < Sinatra::Base
   end
 
   post '/new_comment' do
-    comment = params[:comment]
-    Peeps.add_peep(comment)
+    Peeps.add_peep(params[:comment])
     redirect '/'
   end
 

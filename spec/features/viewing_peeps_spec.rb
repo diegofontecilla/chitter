@@ -1,10 +1,14 @@
 feature 'Viewing peeps' do
   scenario 'A user can see peeps' do
-    connection = PG.connect(dbname: 'chitter_2_test')
+    # connection = PG.connect(dbname: 'chitter_2_test')
 
-    connection.exec("INSERT INTO peeps VALUES(1, 'having breakfast on venice');")
-    connection.exec("INSERT INTO peeps VALUES(2, 'I dont see facebook much');")
-    connection.exec("INSERT INTO peeps VALUES(3, 'I love nature');")
+    # connection.exec("INSERT INTO peeps VALUES(1, 'having breakfast on venice');")
+    # connection.exec("INSERT INTO peeps VALUES(2, 'I dont see facebook much');")
+    # connection.exec("INSERT INTO peeps VALUES(3, 'I love nature');")
+
+    Peeps.add_peep('having breakfast on venice')
+    Peeps.add_peep('I dont see facebook much')
+    Peeps.add_peep('I love nature')
 
     visit('/')
 

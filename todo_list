@@ -3,3 +3,5 @@
 select the table and columns I am interested in.
 -on peeps spec make a test to match_array and see posts are displayed in
 reverse chronological order.
+-create different class for getting the time for posts, on peeps class.
+-refactor peeps_spec as i did on viewong_peeps_spec
