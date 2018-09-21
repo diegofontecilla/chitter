@@ -18,4 +18,19 @@ describe Peeps do
       expect(peeps).to include('I love nature')
     end
   end
+
+  context '.add_peep' do
+
+    it 'generate a time stamp indicating the time when a new post was made' do
+      fake_time = double('time')
+      allow(Time).to receive(:now).and_return(fake_time)
+      allow(fake_time).to receive(:strftime).and_return('12:09')
+      
+      connection = PG.connect(dbname: 'chitter_2_test')
+
+      Peeps.add_peep('francisca')
+      peeps = Peeps.all
+      expect(peeps).to include('francisca || post made at 12:09')
+    end
+  end
 end

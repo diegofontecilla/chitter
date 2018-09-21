@@ -1,3 +1,5 @@
 21.09.18
 -on Peeps class, SELECT the whole db on line 13, then in the view I should
 select the table and columns I am interested in.
+-on peeps spec make a test to match_array and see posts are displayed in
+reverse chronological order.
