@@ -10,7 +10,7 @@ feature 'Viewing peeps' do
     Peeps.add_peep('I dont see facebook much')
     Peeps.add_peep('I love nature')
 
-    visit('/')
+    visit('/chitter')
 
     expect(page).to have_content 'having breakfast on venice'
     expect(page).to have_content 'I dont see facebook much'

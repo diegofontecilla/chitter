@@ -1,14 +1,9 @@
-<h2>Welcome to Chitter!</h2>
-<h4>Share a comment with your friends:</h4>
-<form action="/new_comment" method="post">
-  <label for="comment">
-    Post a new comment here
-    <input type="text" name="comment">
-  </label>
+<h2>Hi there, Start using Chitter right now!</h2>
+<h4>Please sign in with your details first:</h4>
+<form action="/chitter" method="get">
+  Email:      <input type="text" name="email"><br>
+  Password:   <input type="text" name="password"><br>
+  Name:       <input type="text" name="name"><br>
+  User name:  <input type="text" name="user_name"><br>
   <input type="submit" value="Submit">
 </form>
-<ul>
-  <% @peeps.reverse.each do |peep| %>
-    <li><%= peep %></li>
-  <% end %>
-</ul>
