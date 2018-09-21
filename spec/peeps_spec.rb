@@ -4,12 +4,12 @@ describe Peeps do
 
   context '.all' do
 
-    it 'display all the peeps' do
+    it 'insert peeps on the test database' do
       connection = PG.connect(dbname: 'chitter_2_test')
 
-      connection.exec("INSERT INTO peeps (peep) VALUES('having breakfast on venice');")
-      connection.exec("INSERT INTO peeps (peep) VALUES('I dont see facebook much');")
-      connection.exec("INSERT INTO peeps (peep) VALUES('I love nature');")
+      connection.exec("INSERT INTO peeps (peep) VALUES('this is a great day');")
+      connection.exec("INSERT INTO peeps (peep) VALUES('autumn starts next sunday');")
+      connection.exec("INSERT INTO peeps (peep) VALUES('london is an amazing city');")
 
       peeps = Peeps.all
 

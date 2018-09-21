@@ -15,10 +15,5 @@ class Chitter < Sinatra::Base
     redirect '/'
   end
 
-  # get '/new_comment' do
-  #   @peeps = Peeps.all
-  #   erb :new_comment
-  # end
-
   run! if app_file == $0
 end

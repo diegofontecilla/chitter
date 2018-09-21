@@ -14,11 +14,11 @@ class Peeps
   end
 
   def self.add_peep(comment)
-    # if ENV['ENVIRONMENT'] == 'test'
-      # connection = PG.connect(dbname: 'chitter_2_test')
-    # else
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'chitter_2_test')
+    else
       connection = PG.connect(dbname: 'chitter_2')
-    # end
+    end
 
     connection.exec("INSERT INTO peeps (peep) VALUES('#{comment}');")
   end

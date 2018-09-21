@@ -1,0 +1,3 @@
+21.09.18
+-on Peeps class, SELECT the whole db on line 13, then in the view I should
+select the table and columns I am interested in.
