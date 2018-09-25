@@ -5,3 +5,6 @@ select the table and columns I am interested in.
 reverse chronological order.
 -create different class for getting the time for posts, on peeps class.
 -refactor peeps_spec as i did on viewong_peeps_spec
+
+24.09.18
+-implement time stamp with hour and date.
