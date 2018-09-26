@@ -8,7 +8,6 @@ class Chitter < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
 
-
   get '/' do
     @peeps = Peeps.all
     erb :index

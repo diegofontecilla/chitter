@@ -28,6 +28,6 @@ feature 'authentication' do
     click_button 'Submit'
 
     expect(page).not_to have_content 'Hi dani, share a post with your friends:'
-    # expect(page).to have_content 'Something does not match, please try again:'
+    expect(page).to have_content 'Something does not match, please try again:'
   end
 end
