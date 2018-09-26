@@ -16,3 +16,11 @@ like in the walkthough.
 
 26.09.18
 -the is an error if you post text between ''. fix that, maybe.
+-change .find in User for .authenticate
+-use Bcrypt in .find in user
+-incorporate many to many relations
+-what is this on the walkthrough:
+result = DatabaseConnection.query("SELECT * FROM users WHERE email = '#{email}'")
+-make specific errors for when email doesnt match with password,
+and when email does not exist in the db.
+-refactor everything

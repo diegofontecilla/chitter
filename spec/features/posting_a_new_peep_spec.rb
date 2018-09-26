@@ -1,6 +1,7 @@
 feature 'Adding peeps' do
   scenario 'user can add a new peep to the list' do
     visit('/')
+    click_button 'Sign up'
     fill_in('email', :with => "to@ni.com")
     fill_in('password', :with => '1234')
     fill_in('name', :with => 'toni')

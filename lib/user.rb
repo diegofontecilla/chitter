@@ -1,3 +1,5 @@
+require 'sinatra/base'
+
 class User
 
   attr_reader :id, :email, :password, :name, :username
@@ -32,12 +34,14 @@ class User
     end
 
     result = connection.exec("SELECT * FROM user_account WHERE email = '#{email}';")
-    if result.any? && result[0]['password'] == password
-      result[0]['id']
-    end
+    return nil unless result.any?
+    return nil unless result[0]['password'] == password
+    return result[0]['id']
   end
 
   def self.get_user_by_id(user_id)
+    return nil unless user_id
+
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'chitter_2_test')
     else
@@ -57,6 +61,7 @@ class User
     end
 
     result = connection.exec("SELECT * FROM user_account")
+    
     result.map do |user|
       User.new(user['id'], user['email'], user['password'], user['name'], user['username'])
     end

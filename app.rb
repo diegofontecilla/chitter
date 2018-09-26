@@ -1,9 +1,13 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './lib/peeps'
 require './lib/user'
+require 'uri'
 
 class Chitter < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
+
 
   get '/' do
     @peeps = Peeps.all
@@ -17,8 +21,13 @@ class Chitter < Sinatra::Base
 
   post '/creating_a_new_session' do
     user_id = User.find(params[:email], params[:password])
-    session[:user] = User.get_user_by_id(user_id)
-    redirect '/make_a_post'
+    if user_id != nil
+      session[:user] = User.get_user_by_id(user_id)
+      redirect '/make_a_post'
+    else
+      flash[:notice] = "Something does not match, please try again:"
+      redirect '/'
+    end
   end
 
   get '/make_a_post' do
