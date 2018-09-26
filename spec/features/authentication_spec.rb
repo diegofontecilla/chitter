@@ -10,7 +10,6 @@ feature 'authentication' do
   end
 
   it 'an error is printed when password doesnt match with email' do
-    User.create('dani@bortnik.com', '1234', 'dani', 'db')
     visit('/')
     fill_in('email', :with => 'dani@bortnik.com')
     fill_in('password', :with => 'wrongpassword')
@@ -21,7 +20,6 @@ feature 'authentication' do
   end
 
   it 'an error is printed when email is wrong' do
-    User.create('dani@bortnik.com', '1234', 'dani', 'db')
     visit('/')
     fill_in('email', :with => 'dani@bortnikkkkk.com')
     fill_in('password', :with => '1234')
@@ -29,5 +27,14 @@ feature 'authentication' do
 
     expect(page).not_to have_content 'Hi dani, share a post with your friends:'
     expect(page).to have_content 'Something does not match, please try again:'
+  end
+
+  it 'user can sign out' do
+    visit('/')
+    fill_in('email', :with => 'feli@fonte.com')
+    fill_in('password', :with => '1234')
+    click_button 'Submit'
+    click_button 'Sign out'
+    expect(page).to have_content 'You have signed out'
   end
 end
