@@ -3,7 +3,6 @@ require 'user'
 describe User do
 
   it '.all returns a list of users' do
-
     User.create('manuel@garcha.com', '1234', 'manuel', 'manuelgarcha')
     User.create('jorge@garcha.com', '1234', 'jorge', 'jorgegarcha')
     User.create('cristobal@garcha.com', '1234', 'cristobal', 'cristobalgarcha')
@@ -19,12 +18,16 @@ describe User do
   end
 
   it '.find id of a user with its email and password' do
-
     user = User.create('mail@a.com', 'lavoro', 'diego', 'diegofontecilla')
     id = User.find('mail@a.com', 'lavoro')
-    p 'd'
-    p user
-    p id
     expect(user.id).to eq(id)
+  end
+
+  it '.create a new user account' do
+    user = User.create('bachan@garcha.com', '1234', 'bachan', 'bachangarcha')
+    expect(user.email).to eq('bachan@garcha.com')
+    expect(user.password).to eq('1234')
+    expect(user.name).to eq('bachan')
+    expect(user.username).to eq('bachangarcha')
   end
 end
