@@ -8,20 +8,27 @@ class Chitter < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
 
+  helpers do
+    def current_user
+      User.get_user_by_id(session[:current_user_id])
+    end
+  end
+
   get '/' do
     @peeps = Peeps.all
     erb :index
   end
 
   post '/new_user_details' do
-    session[:user] = User.create(params[:email], params[:password], params[:name], params[:username])
+    new_user = User.create(params[:email], params[:password], params[:name], params[:username])
+    session[:current_user_id] = new_user.id
     redirect '/make_a_post'
   end
 
   post '/creating_a_new_session' do
-    user_id = User.find(params[:email], params[:password])
+    user_id = User.find_id(params[:email], params[:password])
     if user_id != nil
-      session[:user] = User.get_user_by_id(user_id)
+      session[:current_user_id] = user_id
       redirect '/make_a_post'
     else
       flash[:notice] = "Something does not match, please try again:"
@@ -31,7 +38,7 @@ class Chitter < Sinatra::Base
 
   get '/make_a_post' do
     @peeps = Peeps.all
-    @user = session[:user]
+    @user = current_user
     erb :make_a_post
   end
 
@@ -40,7 +47,7 @@ class Chitter < Sinatra::Base
   end
 
   post '/new_comment' do
-    Peeps.add_peep(params[:comment])
+    Peeps.add_peep(params[:comment], current_user.id)
     redirect '/make_a_post'
   end
 

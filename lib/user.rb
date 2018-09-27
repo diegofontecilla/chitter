@@ -20,7 +20,7 @@ class User
     return User.new(result[0]['id'], result[0]['email'], result[0]['password'], result[0]['name'], result[0]['username'])
   end
 
-  def self.find(email, password)
+  def self.find_id(email, password)
     self.connect_to_db
     result = @connection.exec("SELECT * FROM user_account WHERE email = '#{email}';")
     return nil unless result.any?

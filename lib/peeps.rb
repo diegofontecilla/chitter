@@ -13,7 +13,7 @@ class Peeps
     result.map { |post| post['peep'] }
   end
 
-  def self.add_peep(comment)
+  def self.add_peep(comment, user_id)
     get_time
 
     if ENV['ENVIRONMENT'] == 'test'
@@ -22,9 +22,9 @@ class Peeps
       connection = PG.connect(dbname: 'chitter_2')
     end
 
-    connection.exec("INSERT INTO peeps (peep) VALUES('#{comment} || post made at #{@str_time}');")
+    # connection.exec("INSERT INTO peeps (peep) VALUES('#{comment} || post made at #{@str_time}');")
+    connection.exec("INSERT INTO peeps (peep, user_id, timestamp) VALUES ('#{comment}', #{user_id.to_i}, '#{Time.now}');")
   end
-
   private
 
   def self.get_time
