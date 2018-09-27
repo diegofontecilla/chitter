@@ -24,4 +24,6 @@ result = DatabaseConnection.query("SELECT * FROM users WHERE email = '#{email}'"
 -make specific errors for when email doesnt match with password,
 and when email does not exist in the db.
 -refactor everything
--
+
+27.09.18
+-make a big refactoring thing(see todo list)

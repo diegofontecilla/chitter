@@ -43,6 +43,11 @@ class User
     end
   end
 
+  def peeps
+    self.connect_to_db
+    @connection.query("SELECT * FROM peeps WHERE user_id = #{id};")
+  end
+
   def self.connect_to_db
     if ENV['ENVIRONMENT'] == 'test'
       @connection = PG.connect(dbname: 'chitter_2_test')

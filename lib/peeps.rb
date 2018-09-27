@@ -2,6 +2,10 @@ require 'pg'
 
 class Peeps
 
+  def initialize(user = User.new)
+    @user = user
+  end
+
   def self.all
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'chitter_2_test')
@@ -22,7 +26,7 @@ class Peeps
       connection = PG.connect(dbname: 'chitter_2')
     end
 
-    connection.exec("INSERT INTO peeps (peep) VALUES('#{comment} || post made at #{@str_time}');")
+    connection.exec("INSERT INTO peeps (peep) VALUES('#{comment} || post made at #{@str_time}', #{@user.id});")
   end
 
   private

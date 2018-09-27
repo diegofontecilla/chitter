@@ -40,6 +40,8 @@ class Chitter < Sinatra::Base
   end
 
   post '/new_comment' do
+    p 'd'
+    p params[:comment]
     Peeps.add_peep(params[:comment])
     redirect '/make_a_post'
   end
