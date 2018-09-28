@@ -14,11 +14,13 @@ describe Peeps do
   context '.add_peep' do
 
     it 'prints a time stamp indicating the time when a new post was made' do
-      allow(Time).to receive(:now).and_return('time')
+      the_time = double(:time)
+      allow(Time).to receive(:now).and_return(the_time)
+      allow(the_time).to receive(:strftime).and_return('time_formatted')
 
       Peeps.add_peep('i leave in the present', '38')
       new_peep = Peeps.all.find { |peep| peep.text == 'i leave in the present' }
-      expect(new_peep.timestamp).to eq 'time'
+      expect(new_peep.timestamp).to eq 'time_formatted'
     end
   end
 end
