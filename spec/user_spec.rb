@@ -19,13 +19,13 @@ describe User do
   context '.find' do
     it 'id of a user with its email and password' do
       user = User.create('mail@a.com', 'lavoro', 'diego', 'diegofontecilla')
-      id = User.find('mail@a.com', 'lavoro')
+      id = User.find_id('mail@a.com', 'lavoro')
       expect(user.id).to eq(id)
     end
 
     it 'prints an error if password does not match with email' do
       user = User.create('maida@marzolo.com', '1234', 'magdalena', 'maida')
-      expect(User.find('maida@marzolo.com', '2222')).to eq(nil)
+      expect(User.find_id('maida@marzolo.com', '2222')).to eq(nil)
     end
   end
 

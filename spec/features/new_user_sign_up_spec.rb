@@ -1,6 +1,5 @@
 feature 'Sign up' do
   scenario 'A new user can sign up and see her name on the screen' do
-    User.create('mail@diegogarcia.com', '1234', 'diego', 'diegogarcia')
     visit ('/')
     click_button 'Sign up'
     fill_in :email, with: 'mail@diegogarcia.com'

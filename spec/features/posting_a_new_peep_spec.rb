@@ -7,7 +7,7 @@ feature 'Adding peeps' do
     fill_in('name', :with => 'toni')
     fill_in('username', :with => 'tonino')
     click_button 'Submit'
-    fill_in('comment', :with => 'I want to visit Budapest')
+    fill_in('peep', :with => 'I want to visit Budapest')
     click_button 'Submit'
 
     expect(page).to have_content 'I want to visit Budapest'
