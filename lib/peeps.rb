@@ -11,33 +11,22 @@ class Peeps
   end
 
   def self.all
-    self.connect_to_db
-    result = @connection.exec("SELECT * FROM peeps")
+    result = database.exec("SELECT * FROM peeps")
     result.map { |peep_info| Peeps.new(peep_info) }
   end
 
   def self.add_peep(peep, user_id)
-    self.connect_to_db
-    @connection.exec("INSERT INTO peeps (peep, user_id, timestamp) VALUES ('#{peep}', #{user_id.to_i}, '#{Time.now}');")
+    time = Time.now.strftime("%H:%M %d/%m/%y")
+    database.exec("INSERT INTO peeps (peep, user_id, timestamp) VALUES ('#{peep}', #{user_id.to_i}, '#{time}');")
   end
 
   def self.get_time_format
-    self.connect_to_db
-    result = @connection.exec("SELECT timestamp FROM peeps")
+    result = database.exec("SELECT timestamp FROM peeps")
     result.map { |time| format_time(time) }
   end
 
-  def self.connect_to_db
-    if ENV['ENVIRONMENT'] == 'test'
-      @connection = PG.connect(dbname: 'chitter_2_test')
-    else
-      @connection = PG.connect(dbname: 'chitter_2')
-    end
-  end
-
-  private
-
-  def self.format_time(time)
-    @str_time = time.strftime("%H:%M")
+  def self.database
+    db_name = ENV['ENVIRONMENT'] == 'test' ? 'chitter_2_test' : 'chitter_2'
+    @connection ||= PG.connect(dbname: db_name)
   end
 end
