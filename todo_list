@@ -27,3 +27,8 @@ and when email does not exist in the db.
 
 27.09.18
 -what is the 'helpers' block I'am using on the controller.
+
+28.09.18
+-feature test user sign up is not working
+-implement the rest of the features
+-write more tests

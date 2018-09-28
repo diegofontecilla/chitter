@@ -1,8 +1,4 @@
-<h2>
-  <% if flash[:notice] %>
-    <%= flash[:notice] %>
-  <% end %>
-</h2>
+<h2><%= flash[:notice] %></h2>
 <h2>Welcome to Chitter!</h2>
 <h4>If you have an account, sign in here:</h4>
   <form action="creating_a_new_session" method="post">
@@ -18,6 +14,6 @@
 </form>
 <ul>
   <% @peeps.reverse.each do |peep| %>
-    <li><%= peep %></li>
+    <li><%= User.get_user_by_id(peep.user_id).name %> said "<%= peep.text %>" @ <%= peep.timestamp %></li>
   <% end %>
 </ul>

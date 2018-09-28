@@ -12,6 +12,10 @@ class Chitter < Sinatra::Base
     def current_user
       User.get_user_by_id(session[:current_user_id])
     end
+
+    def redirect_if_no_current_user
+      redirect '/' unless current_user
+    end
   end
 
   get '/' do
@@ -37,6 +41,7 @@ class Chitter < Sinatra::Base
   end
 
   get '/make_a_post' do
+    redirect_if_no_current_user
     @peeps = Peeps.all
     @user = current_user
     erb :make_a_post
@@ -46,12 +51,14 @@ class Chitter < Sinatra::Base
     erb :sign_up
   end
 
-  post '/new_comment' do
-    Peeps.add_peep(params[:comment], current_user.id)
+  post '/new_peep' do
+    redirect_if_no_current_user
+    Peeps.add_peep(params[:peep], current_user.id)
     redirect '/make_a_post'
   end
 
   post '/sessions/destroy' do
+    redirect_if_no_current_user
     session.clear
     flash[:notice] = "You have signed out!"
     redirect '/'
