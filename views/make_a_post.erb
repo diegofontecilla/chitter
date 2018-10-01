@@ -8,7 +8,7 @@
 </form>
 <ul>
   <% @peeps.reverse.each do |peep| %>
-    <li><%= User.get_user_by_id(peep.user_id.to_i).name %> said "<%= peep.text %>" @ <%= peep.timestamp %></li>
+    <li><%= User.get_user_by_id(peep.user_id).name %> said "<%= peep.text %>" @ <%= peep.timestamp %></li>
   <% end %>
 </ul>
 <form action="/sessions/destroy" method="post">

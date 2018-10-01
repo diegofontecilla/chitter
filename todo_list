@@ -4,10 +4,7 @@ select the table and columns I am interested in.
 -on peeps spec make a test to match_array and see posts are displayed in
 reverse chronological order.
 -create different class for getting the time for posts, on peeps class.
--refactor peeps_spec as i did on viewong_peeps_spec
-
-24.09.18
--implement time stamp with hour and date.
+-refactor peeps_spec as i did on viewing_peeps_spec
 
 25.09.18
 -implement parameters of initialize for User as one big hash,
@@ -21,14 +18,3 @@ like in the walkthough.
 -incorporate many to many relations
 -what is this on the walkthrough:
 result = DatabaseConnection.query("SELECT * FROM users WHERE email = '#{email}'")
--make specific errors for when email doesnt match with password,
-and when email does not exist in the db.
--refactor everything
-
-27.09.18
--what is the 'helpers' block I'am using on the controller.
-
-28.09.18
--feature test user sign up is not working
--implement the rest of the features
--write more tests

@@ -2,7 +2,6 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/peeps'
 require './lib/user'
-require 'uri'
 
 class Chitter < Sinatra::Base
   enable :sessions

@@ -16,13 +16,8 @@ class Peeps
   end
 
   def self.add_peep(peep, user_id)
-    time = Time.now.strftime("%H:%M %d/%m/%y")
-    database.exec("INSERT INTO peeps (peep, user_id, timestamp) VALUES ('#{peep}', #{user_id.to_i}, '#{time}');")
-  end
-
-  def self.get_time_format
-    result = database.exec("SELECT timestamp FROM peeps")
-    result.map { |time| format_time(time) }
+      time = Time.now.strftime("%H:%M %d/%m/%y")
+    database.exec("INSERT INTO peeps (peep, user_id, timestamp) VALUES ('#{peep}', #{user_id}, '#{time}');")
   end
 
   def self.database
