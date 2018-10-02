@@ -1,4 +1,7 @@
-<h4>Hi <%= @user.name %>, share a post with your friends:</h4>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<h2>Hi <%= @user.name %>, share a post with your friends:</h2>
 <form action="/new_peep" method="post">
 <label for="peep">
   Post a new peep here:
